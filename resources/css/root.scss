@@ -1,0 +1,13 @@
+html {
+    scroll-behavior: smooth;
+}
+
+
+// Fix for mobile browsers
+.min-h-screen {
+    min-height: calc(100 * var(--vh, 1vh))
+}
+
+.h-screen {
+    height: calc(100 * var(--vh, 1vh))
+}

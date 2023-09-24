@@ -1,0 +1,130 @@
+ID:  accent-150
+VAR: --accent-150
+HEX: #802E29
+RGB: rgb(128, 46, 41)
+ID:  accent-140
+VAR: --accent-140
+HEX: #993731
+RGB: rgb(153, 55, 49)
+ID:  accent-130
+VAR: --accent-130
+HEX: #B24039
+RGB: rgb(178, 64, 57)
+ID:  accent-120
+VAR: --accent-120
+HEX: #CC4941
+RGB: rgb(204, 73, 65)
+ID:  accent-110
+VAR: --accent-110
+HEX: #E55249
+RGB: rgb(229, 82, 73)
+ID:  accent-DEFAULT
+VAR: --accent-DEFAULT
+HEX: #FF5B51
+RGB: rgb(255, 91, 81)
+ID:  accent-90
+VAR: --accent-90
+HEX: #FF6B62
+RGB: rgb(255, 107, 98)
+ID:  accent-80
+VAR: --accent-80
+HEX: #FF7C74
+RGB: rgb(255, 124, 116)
+ID:  accent-70
+VAR: --accent-70
+HEX: #FF8C85
+RGB: rgb(255, 140, 133)
+ID:  accent-60
+VAR: --accent-60
+HEX: #FF9D97
+RGB: rgb(255, 157, 151)
+ID:  accent-50
+VAR: --accent-50
+HEX: #FFADA8
+RGB: rgb(255, 173, 168)
+ID:  accent-40
+VAR: --accent-40
+HEX: #FFBDB9
+RGB: rgb(255, 189, 185)
+ID:  accent-30
+VAR: --accent-30
+HEX: #FFCECB
+RGB: rgb(255, 206, 203)
+ID:  accent-20
+VAR: --accent-20
+HEX: #FFDEDC
+RGB: rgb(255, 222, 220)
+ID:  accent-10
+VAR: --accent-10
+HEX: #FFEFEE
+RGB: rgb(255, 239, 238)
+ID:  accent-slight
+VAR: --accent-slight
+HEX: #FFF7F6
+RGB: rgb(255, 247, 246)
+
+
+ID:  secondary-150
+VAR: --secondary-150
+HEX: #250A48
+RGB: rgb(37, 10, 72)
+ID:  secondary-140
+VAR: --secondary-140
+HEX: #2C0B56
+RGB: rgb(44, 11, 86)
+ID:  secondary-130
+VAR: --secondary-130
+HEX: #330D64
+RGB: rgb(51, 13, 100)
+ID:  secondary-120
+VAR: --secondary-120
+HEX: #3A0F72
+RGB: rgb(58, 15, 114)
+ID:  secondary-110
+VAR: --secondary-110
+HEX: #421181
+RGB: rgb(66, 17, 129)
+ID:  secondary-DEFAULT
+VAR: --secondary-DEFAULT
+HEX: #49138F
+RGB: rgb(73, 19, 143)
+ID:  secondary-90
+VAR: --secondary-90
+HEX: #5B2B9A
+RGB: rgb(91, 43, 154)
+ID:  secondary-80
+VAR: --secondary-80
+HEX: #6D42A5
+RGB: rgb(109, 66, 165)
+ID:  secondary-70
+VAR: --secondary-70
+HEX: #805AB1
+RGB: rgb(128, 90, 177)
+ID:  secondary-60
+VAR: --secondary-60
+HEX: #9271BC
+RGB: rgb(146, 113, 188)
+ID:  secondary-50
+VAR: --secondary-50
+HEX: #A489C7
+RGB: rgb(164, 137, 199)
+ID:  secondary-40
+VAR: --secondary-40
+HEX: #B6A1D2
+RGB: rgb(182, 161, 210)
+ID:  secondary-30
+VAR: --secondary-30
+HEX: #C8B8DD
+RGB: rgb(200, 184, 221)
+ID:  secondary-20
+VAR: --secondary-20
+HEX: #DBD0E9
+RGB: rgb(219, 208, 233)
+ID:  secondary-10
+VAR: --secondary-10
+HEX: #EDE7F4
+RGB: rgb(237, 231, 244)
+ID:  secondary-slight
+VAR: --secondary-slight
+HEX: #F6F3F9
+RGB: rgb(246, 243, 249)
