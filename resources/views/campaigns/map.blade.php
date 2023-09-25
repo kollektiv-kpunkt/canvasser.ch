@@ -74,33 +74,35 @@
         }
     });
 
+
     let saveButton = document.querySelector("#csr-save-turf");
-
-    document.querySelector("#csr-add-turf").addEventListener("click",function(e){
-        map.pm.addControls();
-        saveButton.classList.remove("hidden");
-    });
-
-    document.querySelector("#csr-save-turf").addEventListener("click", async function(e){
-        let turf = newDraws.toGeoJSON();
-        let body = {
-            geometry: turf,
-            campaign_id: {{$campaign->id}}
-        };
-        let response = await fetch("/{{$campaign->slug}}/turfs",{
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "X-CSRF-TOKEN": "{{ csrf_token() }}"
-            },
-            body: JSON.stringify(body)
+    if (saveButton) {
+        document.querySelector("#csr-add-turf").addEventListener("click",function(e){
+            map.pm.addControls();
+            saveButton.classList.remove("hidden");
         });
-        let data = await response.json();
-        console.log(data);
-        if (data.success) {
-            window.location.reload();
-        }
-    });
+
+        document.querySelector("#csr-save-turf").addEventListener("click", async function(e){
+            let turf = newDraws.toGeoJSON();
+            let body = {
+                geometry: turf,
+                campaign_id: {{$campaign->id}}
+            };
+            let response = await fetch("/{{$campaign->slug}}/turfs",{
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-CSRF-TOKEN": "{{ csrf_token() }}"
+                },
+                body: JSON.stringify(body)
+            });
+            let data = await response.json();
+            console.log(data);
+            if (data.success) {
+                window.location.reload();
+            }
+        });
+    }
 
     let existingTurfs = new L.featureGroup();
     let turf;
@@ -109,9 +111,6 @@
     };
     @foreach ($campaign->turfs as $turf)
         turf = L.geoJSON({!! json_encode($turf->geometry) !!}, {pmIgnore: true, style: existingTurfStyle });
-        turf.addEventListener("click",function(e){
-            window.location.href = "/{{$campaign->slug}}/turfs/{{$turf->id}}";
-        });
         existingTurfs.addLayer(turf);
     @endforeach
     existingTurfs.addTo(map);
