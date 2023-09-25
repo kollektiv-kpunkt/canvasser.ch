@@ -11,8 +11,10 @@ class Campaign extends Model
 
     protected $fillable = [
         'uuid',
+        'slug',
         'title',
         'description',
+        'region',
         'admins',
     ];
 
@@ -20,4 +22,19 @@ class Campaign extends Model
         'admins' => 'array',
     ];
 
+    /**
+     * Get all of the turfs for the Campaign
+     */
+    public function turfs()
+    {
+        return $this->hasMany(Turf::class);
+    }
+
+    /**
+     * Get all of the campaigns for the User
+     */
+    public static function usersCampaigns()
+    {
+        return Campaign::whereJsonContains('admins', strval(auth()->user()->id))->get();
+    }
 }

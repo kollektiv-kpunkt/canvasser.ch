@@ -15,8 +15,12 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->string("uuid", 36)->unique();
+            $table->string("slug", 100)->unique();
             $table->string("title", 100);
             $table->string("description", 255)->nullable();
+            $table->enum("region",
+                ["CH", "ZH", "BE", "LU", "UR", "SZ", "OW", "NW", "GL", "ZG", "FR", "SO", "BS", "BL", "SH", "AR", "AI", "SG", "GR", "AG", "TG", "TI", "VD", "VS", "NE", "GE", "JU"]
+            )->default("CH");
             $table->json("admins")->default("[1]");
         });
     }

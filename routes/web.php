@@ -19,12 +19,17 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::prefix("admin")->group(function () {
+
+// Route::get("/admin", function () {
+//     return view("dashboard");
+// })->middleware(["auth", "verified"]);
+
+Route::middleware(["auth", "verified"])->prefix("admin")->group(function () {
     Route::get('/', function () {
         return view('dashboard');
     })->name('admin');
 
-    Route::resource('campaigns', CampaignController::class);
+    Route::resource('campaigns', CampaignController::class)->middleware("campaignaccess");
 });
 
 Route::middleware('auth')->group(function () {
@@ -33,4 +38,11 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+
 require __DIR__.'/auth.php';
+
+
+Route::prefix("/{campaign:slug}")->group(function () {
+    Route::get("/", [CampaignController::class, "map"])->name("campaigns.map");
+    Route::resource("turfs", \App\Http\Controllers\TurfController::class)->only(["store"]);
+});

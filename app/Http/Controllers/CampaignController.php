@@ -14,7 +14,7 @@ class CampaignController extends Controller
     public function index()
     {
         return view('campaigns.index', [
-            'campaigns' => Campaign::all(),
+            'campaigns' => Campaign::usersCampaigns(),
         ]);
     }
 
@@ -33,7 +33,9 @@ class CampaignController extends Controller
     {
         $validated = $request->validate([
             'title' => 'required|max:100',
+            'slug' => 'required|max:100|unique:campaigns',
             'description' => 'max:255',
+            'region' => "required",
             "admins" => "array",
         ]);
         $validated["uuid"] = Str::uuid();
@@ -66,7 +68,9 @@ class CampaignController extends Controller
     {
         $validated = $request->validate([
             'title' => 'required|max:100',
+            'slug' => 'required|max:100|unique:campaigns,slug,' . $campaign->id,
             'description' => 'max:255',
+            'region' => "required",
             "admins" => "array",
         ]);
         $campaign->update($validated);
@@ -80,5 +84,15 @@ class CampaignController extends Controller
     {
         $campaign->delete();
         return redirect()->route('campaigns.index');
+    }
+
+    /**
+     * Display map for the active campaign.
+     */
+    public function map(Campaign $campaign)
+    {
+        return view('campaigns.map', [
+            'campaign' => $campaign,
+        ]);
     }
 }
