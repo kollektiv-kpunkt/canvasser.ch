@@ -20,7 +20,7 @@
                 @foreach ($campaigns as $campaign)
                     <tr class="border border-secondary-50">
                         <td class="p-3 font-bold">{{$campaign->title}}</td>
-                        <td class="p-3">{{$campaign->slug}}</td>
+                        <td class="p-3"><a href="/{{$campaign->slug}}" class="text-accent underline">{{$campaign->slug}}</a></td>
                         <td class="p-3">{{$campaign->region}}</td>
                         <td class="p-3 flex gap-x-2">
                             <a href="{{route("campaigns.edit", $campaign->id)}}">

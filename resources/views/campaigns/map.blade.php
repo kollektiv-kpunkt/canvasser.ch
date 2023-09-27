@@ -1,5 +1,6 @@
 @php
     $bounds = [
+        "CH" => [[47.8308275417, 10.4427014502], [45.7769477403, 6.02260949059]],
         "AG" => [[47.6211124,8.4550999],[47.1374801,7.7134685]],
         "AR" => [[47.4690487,9.6309631],[47.2470247,9.1910895]],
         "AI" => [[47.4436942,9.6183988],[47.2339966,9.3097134]],
@@ -32,8 +33,12 @@
     <x-application-logo class="w-16 fixed top-4 right-4 z-[10000]"/>
     <div class="w-screen h-screen" id="csr-map"></div>
     @if ((Auth::check()) )
-        <a href="#" id="csr-add-turf" class="cursor-pointer bg-accent text-white w-12 h-12 flex justify-center items-center rounded-full fixed bottom-8 left-8 z-[10000]"><span class="material-symbols-outlined !text-4xl">add</span></a>
-        <a href="#" id="csr-save-turf" class="cursor-pointer bg-accent text-white flex gap-x-3 justify-center items-center rounded-md text-xl fixed bottom-8 right-8 z-[10000] p-3 hidden">Speichern <span class="material-symbols-outlined">save</span></a>
+        <a href="#" id="csr-save-turf" class="csr-csr-control" data-campaign-id="{{$campaign->id}}" data-csrf-token="{{csrf_token()}}"><span class="material-symbols-outlined">save</span></a>
+        <a href="#" id="csr-delete-turf" class="csr-csr-control"><span class="material-symbols-outlined">delete</span></a>
+        <a href="#" id="csr-edit-turf" class="csr-csr-control"><span class="material-symbols-outlined">edit</span></a>
+        {{-- <a href="#" id="csr-search-zipcode" class="csr-csr-control"><span class="material-symbols-outlined">filter_list</span></a> --}}
+        <a href="#" id="csr-add-polygon" class="csr-csr-control"><span class="material-symbols-outlined">stylus_note</span></a>
+        <a href="#" id="csr-show-controls" class="csr-csr-control !z-[10001] !bg-accent !text-white"><span class="material-symbols-outlined !text-4xl">add</span></a>
     @else
         <a href="/login" id="csr-login-turf" class="cursor-pointer bg-accent text-white flex gap-x-3 justify-center items-center rounded-md text-xl fixed bottom-8 left-8 z-[10000] p-3">Login <span class="material-symbols-outlined">login</span></a>
     @endif
@@ -51,8 +56,9 @@
 
 <script>
     var map = L.map('csr-map');
-    if (localStorage.getItem('csr-map-bounds')) {
-        let bounds = JSON.parse(localStorage.getItem('csr-map-bounds'));
+    window.map = map;
+    if (localStorage.getItem('csr-map-bounds|{{$campaign->slug}}')) {
+        let bounds = JSON.parse(localStorage.getItem('csr-map-bounds|{{$campaign->slug}}'));
         map.fitBounds([ bounds._southWest,bounds._northEast]);
     } else {
         map.fitBounds({!! json_encode($bounds[$campaign->region]) !!});
@@ -74,36 +80,6 @@
         }
     });
 
-
-    let saveButton = document.querySelector("#csr-save-turf");
-    if (saveButton) {
-        document.querySelector("#csr-add-turf").addEventListener("click",function(e){
-            map.pm.addControls();
-            saveButton.classList.remove("hidden");
-        });
-
-        document.querySelector("#csr-save-turf").addEventListener("click", async function(e){
-            let turf = newDraws.toGeoJSON();
-            let body = {
-                geometry: turf,
-                campaign_id: {{$campaign->id}}
-            };
-            let response = await fetch("/{{$campaign->slug}}/turfs",{
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "X-CSRF-TOKEN": "{{ csrf_token() }}"
-                },
-                body: JSON.stringify(body)
-            });
-            let data = await response.json();
-            console.log(data);
-            if (data.success) {
-                window.location.reload();
-            }
-        });
-    }
-
     let existingTurfs = new L.featureGroup();
     let turf;
     var existingTurfStyle = { // Define your style object
@@ -117,7 +93,8 @@
 
     map.on('moveend', function(e) {
         var bounds = map.getBounds();
-        localStorage.setItem('csr-map-bounds', JSON.stringify(bounds));
+        localStorage.setItem('csr-map-bounds|{{$campaign->slug}}', JSON.stringify(bounds));
     });
 </script>
+@vite(["resources/js/campaigns/map.js"])
 

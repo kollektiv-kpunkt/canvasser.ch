@@ -1,0 +1,7 @@
+.csr-csr-control {
+    @apply bg-white text-accent w-12 h-12 flex justify-center items-center rounded-full fixed bottom-8 left-8 z-[1000];
+
+    &.csr-csr-control-active {
+        @apply bg-accent text-white;
+    }
+}
