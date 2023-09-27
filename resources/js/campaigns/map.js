@@ -75,3 +75,9 @@ document.querySelector("#csr-edit-turf").addEventListener("click", function (e) 
 document.querySelector("#csr-delete-turf").addEventListener("click", function (e) {
     map.pm.enableGlobalRemovalMode();
 });
+
+
+map.on('pm:create', function (e) {
+    document.querySelector("#csr-add-polygon").dataset.addPolygon = "false";
+    document.querySelector("#csr-add-polygon").classList.remove('csr-csr-control-active');
+});
