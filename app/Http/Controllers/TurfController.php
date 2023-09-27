@@ -33,7 +33,7 @@ class TurfController extends Controller
             "campaign_id" => "required"
         ]);
         $validated["uuid"] = \Illuminate\Support\Str::uuid();
-        $validated['user_id'] = 1;
+        $validated['user_id'] = request()->user()->id;
         $turf = Turf::create($validated);
         $turf["success"] = true;
         return response()->json($turf);
