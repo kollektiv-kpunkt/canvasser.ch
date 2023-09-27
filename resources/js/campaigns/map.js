@@ -62,7 +62,9 @@ document.querySelector("#csr-add-polygon").addEventListener("click", function (e
         map.pm.disableDraw();
         addPolygonButton.dataset.addPolygon = "false";
     } else {
-        map.pm.enableDraw("Polygon");
+        map.pm.enableDraw("Polygon", {
+            allowSelfIntersection: false,
+        });
         addPolygonButton.dataset.addPolygon = "true";
     }
 
