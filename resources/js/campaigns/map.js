@@ -2,21 +2,23 @@ let controlButtons = document.querySelectorAll('.csr-csr-control:not(#csr-show-c
 
 const map = window.map;
 
+for (let i = 0; i < controlButtons.length; i++) {
+    controlButtons[i].addEventListener('click', function (e) {
+        let controlButton = e.target.closest('.csr-csr-control');
+        let activeControlButton = document.querySelector('.csr-csr-control-active');
+        if (activeControlButton && activeControlButton !== controlButton) {
+            map.pm.disableGlobalEditMode();
+            map.pm.disableGlobalRemovalMode();
+            map.pm.disableDraw();
+            document.querySelector("#csr-add-polygon").dataset.addPolygon = "false";
+            activeControlButton.classList.remove('csr-csr-control-active');
+        }
+        controlButton.classList.toggle('csr-csr-control-active');
+    });
+}
+
 document.querySelector("#csr-show-controls").addEventListener("click", function (e) {
     for (let i = 0; i < controlButtons.length; i++) {
-        controlButtons[i].addEventListener('click', function (e) {
-            let controlButton = e.target.closest('.csr-csr-control');
-            let activeControlButton = document.querySelector('.csr-csr-control-active');
-            if (activeControlButton && activeControlButton !== controlButton) {
-                map.pm.disableGlobalEditMode();
-                map.pm.disableGlobalRemovalMode();
-                map.pm.disableDraw();
-                document.querySelector("#csr-add-polygon").dataset.addPolygon = "false";
-                activeControlButton.classList.remove('csr-csr-control-active');
-            }
-            controlButton.classList.toggle('csr-csr-control-active');
-        });
-
         setTimeout(() => {
             controlButtons[i].animate([
                 { transform: 'translateY(0)' },

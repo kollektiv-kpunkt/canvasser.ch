@@ -36,7 +36,7 @@
         <a href="#" id="csr-save-turf" class="csr-csr-control" data-campaign-id="{{$campaign->id}}" data-csrf-token="{{csrf_token()}}"><span class="material-symbols-outlined">save</span></a>
         <a href="#" id="csr-delete-turf" class="csr-csr-control"><span class="material-symbols-outlined">delete</span></a>
         <a href="#" id="csr-edit-turf" class="csr-csr-control"><span class="material-symbols-outlined">edit</span></a>
-        {{-- <a href="#" id="csr-search-zipcode" class="csr-csr-control"><span class="material-symbols-outlined">filter_list</span></a> --}}
+        <a href="#" id="csr-search-zipcode" class="csr-csr-control"><span class="material-symbols-outlined">filter_list</span></a>
         <a href="#" id="csr-add-polygon" class="csr-csr-control"><span class="material-symbols-outlined">stylus_note</span></a>
         <a href="#" id="csr-show-controls" class="csr-csr-control !z-[10001] !bg-accent !text-white"><span class="material-symbols-outlined !text-4xl">add</span></a>
     @else
