@@ -36,11 +36,11 @@
         <a href="#" id="csr-save-turf" class="csr-csr-control" data-campaign-id="{{$campaign->id}}" data-csrf-token="{{csrf_token()}}"><span class="material-symbols-outlined">save</span></a>
         <a href="#" id="csr-delete-turf" class="csr-csr-control"><span class="material-symbols-outlined">delete</span></a>
         <a href="#" id="csr-edit-turf" class="csr-csr-control"><span class="material-symbols-outlined">edit</span></a>
-        <a href="#" id="csr-search-zipcode" class="csr-csr-control"><span class="material-symbols-outlined">filter_list</span></a>
+        {{-- <a href="#" id="csr-search" class="csr-csr-control"><span class="material-symbols-outlined">search</span></a> --}}
         <a href="#" id="csr-add-polygon" class="csr-csr-control"><span class="material-symbols-outlined">stylus_note</span></a>
         <a href="#" id="csr-show-controls" class="csr-csr-control !z-[10001] !bg-accent !text-white"><span class="material-symbols-outlined !text-4xl">add</span></a>
     @else
-        <a href="/login" id="csr-login-turf" class="cursor-pointer bg-accent text-white flex gap-x-3 justify-center items-center rounded-md text-xl fixed bottom-8 left-8 z-[10000] p-3">Login <span class="material-symbols-outlined">login</span></a>
+        <a href="/{{$campaign->slug}}/edit" id="csr-login-turf" class="cursor-pointer bg-accent text-white flex gap-x-3 justify-center items-center rounded-md text-xl fixed bottom-8 left-8 z-[10000] p-3">Login <span class="material-symbols-outlined">login</span></a>
     @endif
 </x-frontend>
 

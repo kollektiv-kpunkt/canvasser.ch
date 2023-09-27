@@ -44,5 +44,8 @@ require __DIR__.'/auth.php';
 
 Route::prefix("/{campaign:slug}")->group(function () {
     Route::get("/", [CampaignController::class, "map"])->name("campaigns.map");
+    Route::get("/edit", function(){
+        return redirect()->route("campaigns.map", request()->campaign);
+    })->middleware(["auth", "verified"])->name("campaigns.map.edit");
     Route::resource("turfs", \App\Http\Controllers\TurfController::class)->only(["store"]);
 });
