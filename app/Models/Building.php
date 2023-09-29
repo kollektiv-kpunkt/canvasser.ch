@@ -5,19 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Zipcode extends Model
+class Building extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'zipcode',
-        'city',
-        'state',
-        'bfsnr',
-        'geoShape',
-    ];
-
-    protected $casts = [
-        'geoShape' => 'array',
+        'EGID',
+        'latitude',
+        'longitude',
+        'numberOfApartments',
     ];
 }

@@ -4,8 +4,68 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "03d1ef0b4c68f9b53f2bc27cd259e542",
+    "content-hash": "9dc1c4f8dc12b65e9b63ca73db62788c",
     "packages": [
+        {
+            "name": "antistatique/swisstopo",
+            "version": "0.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/antistatique/swisstopo.git",
+                "reference": "7733d8c02aa75e2b8fdbaa148b6a367d9cdf6642"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/antistatique/swisstopo/zipball/7733d8c02aa75e2b8fdbaa148b6a367d9cdf6642",
+                "reference": "7733d8c02aa75e2b8fdbaa148b6a367d9cdf6642",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.0"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^3.0",
+                "php-coveralls/php-coveralls": "^2.1",
+                "php-mock/php-mock-phpunit": "^2.4",
+                "phpmd/phpmd": "^2.8",
+                "phpstan/phpstan-deprecation-rules": "^0.12.2",
+                "phpunit/php-code-coverage": "^9.2.0",
+                "phpunit/phpunit": "^9.0.0",
+                "sebastian/phpcpd": "^6.0",
+                "sensiolabs/security-checker": "^5.0",
+                "vimeo/psalm": "^4.29"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Antistatique\\Swisstopo\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Antistatique SA",
+                    "email": "info@antistatique.net",
+                    "homepage": "https://www.antistatique.net",
+                    "role": "Sponsor"
+                },
+                {
+                    "name": "Kevin Wenger",
+                    "email": "contact@kevin-wenger.ch",
+                    "homepage": "http://kevin-wenger.ch",
+                    "role": "Author & Maintainer"
+                }
+            ],
+            "description": "Convert GPS (WGS84) to Swiss (LV03 and LV95) coordinates (and vice versa)",
+            "homepage": "https://github.com/antistatique/swisstopo",
+            "support": {
+                "source": "https://github.com/antistatique/swisstopo/tree/0.0.1"
+            },
+            "time": "2023-07-12T10:55:49+00:00"
+        },
         {
             "name": "brick/math",
             "version": "0.11.0",

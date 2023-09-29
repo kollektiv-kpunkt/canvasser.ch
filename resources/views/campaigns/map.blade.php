@@ -32,11 +32,28 @@
 <x-frontend :title="$campaign->title">
     <x-application-logo class="w-16 fixed top-4 right-4 z-[10000]"/>
     <div class="w-screen h-screen" id="csr-map"></div>
-    @if ((Auth::check()) )
+    <div class="csr-search-bar flex w-full justify-center fixed top-4 z-[10000]">
+        <form action="#" id="csr-search-bar-form" class="flex gap-4">
+            <input type="search" name="search" class="w-72 md:w-96 rounded-full border-none" placeholder="{{__("Suchen (⌘/CTRL+K)")}}" required>
+            <button type="submit" class="csr-search-button p-2 bg-accent rounded-full flex"><span class="material-symbols-outlined text-white">search</span></button>
+        </form>
+    </div>
+    @if ((Auth::check() && Auth::user()->hasVerifiedEmail()) )
         <a href="#" id="csr-save-turf" class="csr-csr-control" data-campaign-id="{{$campaign->id}}" data-csrf-token="{{csrf_token()}}"><span class="material-symbols-outlined">save</span></a>
         <a href="#" id="csr-delete-turf" class="csr-csr-control"><span class="material-symbols-outlined">delete</span></a>
         <a href="#" id="csr-edit-turf" class="csr-csr-control"><span class="material-symbols-outlined">edit</span></a>
-        {{-- <a href="#" id="csr-search" class="csr-csr-control"><span class="material-symbols-outlined">search</span></a> --}}
+        <a href="#" id="csr-search-zipcode" class="csr-csr-control"><span class="material-symbols-outlined">search</span></a>
+        <div id="csr-search-zipcode-blind" class="fixed bg-black top-0 left-0 w-screen h-screen z-[10005] bg-opacity-50 flex justify-center items-center opacity-0 invisible">
+            <div class="csr-search-zipcode-wrapper w-full max-w-lg px-8 mx-auto">
+                <div class="flex mb-4">
+                    <span class="material-symbols-outlined ml-auto text-white cursor-pointer" id="csr-search-zipcode-close">close</span>
+                </div>
+                <form action="#" class="flex gap-4" id="csr-search-zipcode-form">
+                    <input type="search" name="zipcode" id="csr-search-zipcode-input" class="rounded-full border-none w-full" placeholder="{{_("PLZ suchen")}}" required>
+                    <button type="submit" class="csr-search-button p-2 bg-accent rounded-full flex"><span class="material-symbols-outlined text-white">search</span></button>
+                </form>
+            </div>
+        </div>
         <a href="#" id="csr-add-polygon" class="csr-csr-control"><span class="material-symbols-outlined">stylus_note</span></a>
         <a href="#" id="csr-show-controls" class="csr-csr-control !z-[10001] !bg-accent !text-white"><span class="material-symbols-outlined !text-4xl">add</span></a>
     @else
@@ -72,6 +89,7 @@
     Stadia_AlidadeSmooth.addTo(map);
 
     const newDraws = L.featureGroup().addTo(map);
+    window.newDraws = newDraws;
 
     map.pm.setGlobalOptions({
         layerGroup: newDraws,

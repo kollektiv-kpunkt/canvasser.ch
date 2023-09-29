@@ -38,8 +38,6 @@ class ImportZips extends Command
             $zipcodeModel->state = $zipcode['kanton'];
             $zipcodeModel->bfsnr = $zipcode['bfsnr'];
             $zipcodeModel->geoShape = $zipcode['geo_shape'];
-
-            $zipcodeModel->population = 0;
             $zipcodeModel->save();
         }
     }

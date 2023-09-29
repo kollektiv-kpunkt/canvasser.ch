@@ -2,6 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BuildingController;
+use App\Http\Controllers\ZipcodeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,4 +18,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+Route::post("/buildings/find", [BuildingController::class, "findInTurf"]);
+
+Route::get("/zipcodes/{zipcode}", function (Request $request) {
+    $zipcode = \App\Models\Zipcode::where('zipcode', $request->zipcode)->where("geoShape", "!=", null)->get(["zipcode", "city", "geoShape"]);
+    return response()->json($zipcode);
 });
