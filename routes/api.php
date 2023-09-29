@@ -21,6 +21,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::post("/buildings/find", [BuildingController::class, "findInTurf"]);
+Route::post("/buildings/count", function () {
+    return response()->json(["count" => \App\Models\Building::count()]);
+});
 
 Route::get("/zipcodes/{zipcode}", function (Request $request) {
     $zipcode = \App\Models\Zipcode::where('zipcode', $request->zipcode)->where("geoShape", "!=", null)->get(["zipcode", "city", "geoShape"]);
