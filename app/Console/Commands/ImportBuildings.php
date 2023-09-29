@@ -37,10 +37,9 @@ class ImportBuildings extends Command
         }, $buildings);
         $converter = new Converter();
         $this->info('Importing buildings');
-        $bar = $this->createProgressBar(count($buildings));
+        $bar = $this->output->createProgressBar(count($buildings));
         $bar->start();
         foreach ($buildings as $building) {
-            $this->info('Importing ' . $building['EGID']);
             $buildingModel = new Building();
             $buildingModel->EGID = $building['EGID'];
             $latLng = $converter->fromMN95ToWGS(floatval($building['GKODE']), floatval($building['GKODN']));
