@@ -12,8 +12,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule): void
     {
-        $schedule->command('building:import')->quarterlyAt("02:00")->timezone('Europe/Zurich');
-        $schedule->command('zipcode:import')->quarterlyAt("05:00")->timezone('Europe/Zurich');
+        $schedule->command('building:import')->quarterlyOn(1, "02:00")->timezone('Europe/Zurich');
+        $schedule->command('zipcode:import')->quarterlyOn(1, "05:00")->timezone('Europe/Zurich');
     }
 
     /**
