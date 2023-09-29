@@ -29,7 +29,6 @@ class ImportZips extends Command
         Zipcode::truncate();
 
         $zipcodes = json_decode(file_get_contents(base_path('data/' . $this->option('zipcodesFile'))), true);
-        $population_per_zipcode = json_decode(file_get_contents(base_path('data/' . $this->option('populationFile'))), true);
         foreach ($zipcodes as $zipcode) {
             $this->info('Importing ' . $zipcode['postleitzahl'] . ' ' . $zipcode['ortbez18']);
             $zipcodeModel = new Zipcode();
