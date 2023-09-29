@@ -29,12 +29,16 @@ class ImportBuildings extends Command
     public function handle()
     {
         Building::truncate();
+        $this->info('Reading CSV file');
         $buildings = array_map('str_getcsv', file(base_path('data/' . $this->option('buildingsFile'))));
         $headers = array_shift($buildings);
         $buildings = array_map(function ($row) use ($headers) {
             return array_combine($headers, $row);
         }, $buildings);
         $converter = new Converter();
+        $this->info('Importing buildings');
+        $bar = $this->createProgressBar(count($buildings));
+        $bar->start();
         foreach ($buildings as $building) {
             $this->info('Importing ' . $building['EGID']);
             $buildingModel = new Building();
@@ -43,6 +47,9 @@ class ImportBuildings extends Command
             $buildingModel->coordinates = DB::raw("ST_GeomFromText('POINT(" . $latLng['long'] . " " . $latLng['lat'] . ")')");
             $buildingModel->numberOfApartments = $building['GANZWHG'];
             $buildingModel->save();
+            $bar->advance();
         }
+        $bar->finish();
+        $this->info('Done');
     }
 }
